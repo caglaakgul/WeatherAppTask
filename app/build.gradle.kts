@@ -14,7 +14,7 @@ android {
         kotlinCompilerExtensionVersion = "1.5.0"
     }
     defaultConfig {
-        applicationId = "com.caglaakgul.weatherapptestcase"
+        applicationId = "com.caglaakgul.weatherapptask"
         minSdk = 26
         targetSdk = 34
         versionCode = 1

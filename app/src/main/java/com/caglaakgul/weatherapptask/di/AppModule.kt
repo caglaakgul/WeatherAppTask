@@ -1,9 +1,16 @@
 package com.caglaakgul.weatherapptask.di
 
+import android.content.Context
+import androidx.datastore.core.DataStore
+import androidx.datastore.dataStoreFile
+import androidx.datastore.preferences.core.PreferenceDataStoreFactory
+import androidx.datastore.preferences.core.Preferences
 import com.caglaakgul.weatherapptask.domain.ApiService
+import com.caglaakgul.weatherapptask.domain.WeatherRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -38,4 +45,20 @@ object AppModule {
         return retrofit.create(ApiService::class.java)
     }
 
+    @Provides
+    @Singleton
+    fun provideDataStore(@ApplicationContext context: Context): DataStore<Preferences> {
+        return PreferenceDataStoreFactory.create(
+            produceFile = { context.dataStoreFile("weather_prefs.preferences_pb") }
+        )
+    }
+
+    @Provides
+    @Singleton
+    fun provideWeatherRepository(
+        apiService: ApiService,
+        dataStore: DataStore<Preferences>
+    ): WeatherRepository {
+        return WeatherRepository(apiService, dataStore)
+    }
 }

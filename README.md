@@ -10,7 +10,7 @@ To run this project locally, follow these steps:
 
 1. Clone the repository to your local machine:
    ```bash
-   git clone [<repository_url>](https://github.com/caglaakgul/WeatherAppTask)
+   git clone https://github.com/caglaakgul/WeatherAppTask
    
 2. Open the project in Android Studio.
 

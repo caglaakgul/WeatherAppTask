@@ -12,16 +12,19 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import coil.compose.rememberImagePainter
 import com.caglaakgul.weatherapptask.domain.state.CityWeather
+import com.caglaakgul.weatherapptask.ui.theme.Poppins
 
 @Composable
 fun CityWeatherCard(
@@ -40,7 +43,7 @@ fun CityWeatherCard(
                 .clip(RoundedCornerShape(16.dp))
                 .background(Color(0xFFF2F2F2))
                 .clickable { onCitySelected(cityWeather.cityName) }
-                .padding(horizontal = 24.dp, vertical = 16.dp)
+                .padding(horizontal = 24.dp, vertical = 8.dp)
         ) {
             Row(
                 modifier = Modifier
@@ -52,11 +55,24 @@ fun CityWeatherCard(
                 Column(
                     modifier = Modifier.weight(1f)
                 ) {
-                    Text(text = cityWeather.cityName, style = MaterialTheme.typography.bodyLarge)
+                    Text(
+                        text = cityWeather.cityName,
+                        style = TextStyle(
+                            fontSize = 20.sp,
+                            color = Color(0xFF2C2C2C),
+                            fontFamily = Poppins,
+                            fontWeight = FontWeight.Normal
+                        )
+                    )
                     Spacer(modifier = Modifier.width(8.dp))
                     Text(
-                        text = "${cityWeather.temperature}",
-                        style = MaterialTheme.typography.bodyMedium
+                        text = "${cityWeather.temperature}°",
+                        style = TextStyle(
+                            fontSize = 60.sp,
+                            color = Color(0xFF2C2C2C),
+                            fontFamily = Poppins,
+                            fontWeight = FontWeight.Normal
+                        )
                     )
                 }
 
@@ -64,7 +80,7 @@ fun CityWeatherCard(
                     painter = imagePainter,
                     contentDescription = "Weather Icon",
                     modifier = Modifier
-                        .size(40.dp)
+                        .size(width = 80.dp, height = 60.dp)
                         .align(Alignment.CenterVertically)
                 )
             }

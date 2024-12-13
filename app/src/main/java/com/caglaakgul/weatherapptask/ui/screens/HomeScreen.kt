@@ -3,9 +3,9 @@ package com.caglaakgul.weatherapptask.ui.screens
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.material3.MaterialTheme
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -16,11 +16,16 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.caglaakgul.weatherapptask.domain.state.CityWeather
 import com.caglaakgul.weatherapptask.ui.components.CityWeatherCard
 import com.caglaakgul.weatherapptask.ui.components.SearchBar
 import com.caglaakgul.weatherapptask.ui.components.WeatherDetail
+import com.caglaakgul.weatherapptask.ui.theme.Poppins
 import com.caglaakgul.weatherapptask.ui.viewmodel.WeatherViewModel
 
 @Composable
@@ -80,14 +85,33 @@ fun HomeScreen(viewModel: WeatherViewModel) {
             }
 
             showInitialMessage -> {
+                Spacer(modifier = Modifier.height(240.dp))
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.Center,
-                    modifier = Modifier.fillMaxSize()
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .wrapContentHeight()
                 ) {
-                    Text("No City Selected", style = MaterialTheme.typography.bodyLarge)
+                    Text(
+                        text = "No City Selected",
+                        style = TextStyle(
+                            fontSize = 30.sp,
+                            color = Color(0xFF2C2C2C),
+                            fontFamily = Poppins,
+                            fontWeight = FontWeight.SemiBold
+                        )
+                    )
                     Spacer(modifier = Modifier.height(8.dp))
-                    Text("Please Search For A City", style = MaterialTheme.typography.bodyMedium)
+                    Text(
+                        text = "Please Search For A City",
+                        style = TextStyle(
+                            fontSize = 15.sp,
+                            color = Color(0xFF2C2C2C),
+                            fontFamily = Poppins,
+                            fontWeight = FontWeight.SemiBold
+                        )
+                    )
                 }
             }
         }

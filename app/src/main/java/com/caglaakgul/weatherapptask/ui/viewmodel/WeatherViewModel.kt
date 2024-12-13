@@ -50,17 +50,15 @@ class WeatherViewModel @Inject constructor(
     fun searchCity(city: String) {
         viewModelScope.launch {
             val result = weatherRepository.getWeatherForCity(city)
-            if (result != null) {
                 _searchResult.value = CityWeather(
-                    cityName = result.location.name,
-                    temperature = result.current.tempC,
-                    condition = result.current.condition.text,
-                    feelsLike = result.current.feelsLikeC,
-                    humidity = result.current.humidity,
-                    uvIndex = result.current.uv.toInt(),
-                    iconUrl = result.current.condition.icon
+                    cityName = result?.location?.name.orEmpty(),
+                    temperature = result?.current?.tempC ?: 0.0,
+                    condition = result?.current?.condition?.text.orEmpty(),
+                    feelsLike = result?.current?.feelsLikeC?:0.0,
+                    humidity = result?.current?.humidity ?: 0,
+                    uvIndex = result?.current?.uv?.toInt() ?: 0,
+                    iconUrl = result?.current?.condition?.icon.orEmpty()
                 )
-            }
         }
     }
 }

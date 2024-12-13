@@ -54,13 +54,15 @@ fun HomeScreen(viewModel: WeatherViewModel) {
             }
 
             searchResult != null -> {
-                CityWeatherCard(
-                    cityWeather = searchResult!!,
-                    onCitySelected = { cityName ->
-                        selectedCity = searchResult
-                        viewModel.loadWeather(cityName)
-                    }
-                )
+                if (searchResult!!.cityName.isNotEmpty()){
+                    CityWeatherCard(
+                        cityWeather = searchResult!!,
+                        onCitySelected = { cityName ->
+                            selectedCity = searchResult
+                            viewModel.loadWeather(cityName)
+                        }
+                    )
+                }
             }
 
             weatherData != null -> {

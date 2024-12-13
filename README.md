@@ -1,3 +1,4 @@
+<div align="left">
 # Weather App Task
 
 This is a weather application developed using Jetpack Compose. The app allows users to search for weather information by city and displays detailed weather data. If a city was previously selected, the app will show its weather details on launch.
